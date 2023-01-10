@@ -1,0 +1,51 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlserver"
+  url      = env("DATABASE_URL")
+}
+
+model Agencia {
+  id_ag         Int      @id @default(autoincrement())
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @default(now()) @updatedAt
+  nome_banco    String   @db.VarChar(20)
+  numero_ag     String   @db.VarChar(15) @unique
+  nome_ag       String   @db.VarChar(100)
+  end_ip        String   @db.VarChar(15)
+  porta         String   @db.VarChar(10)
+  masc_rede     String   @db.VarChar(15) 
+  end_dns       String   @db.VarChar(15) 
+  gateway       String   @db.VarChar(15) 
+  ipfixo_dhcp   String   @db.VarChar(10)
+  mac_adress    String   @db.VarChar(20)
+  relatorio     Relatorio_acesso[]
+}
+
+model Relatorio_acesso {
+  id_evt        Int                   @id @default(autoincrement())
+  createdAt     DateTime              @default(now())
+  updatedAt     DateTime              @default(now()) @updatedAt
+  nr_agencia    String                @db.VarChar(15)
+  evento        Agencia               @relation(fields: [nr_agencia], references: [numero_ag]) 
+  data_evt      String                @db.VarChar(10)
+  hora_evt      String                @db.VarChar(8)
+  cont_evt      String                @db.VarChar(15)   
+  nr_seq        String                @db.VarChar(20) 
+  crc           String                @db.VarChar(50) 
+  cod_evt       Int                   @db.SmallInt
+  descricao     Descricao_evento      @relation(fields:[cod_evt], references: [cod_evento])  
+}
+
+model Descricao_evento {
+  id_evento        Int                  @id @default(autoincrement())
+  cod_evento       Int                  @db.SmallInt @unique
+  desc_evento      String               @db.VarChar(50)
+  eventos          Relatorio_acesso[]   
+}
+
