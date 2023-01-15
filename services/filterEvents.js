@@ -1,16 +1,25 @@
 const { PrismaClient } = require('@prisma/client')
-
 const prisma = new PrismaClient();
 
-const filterEvents = require('../services/filterEvents')
+// eventosMap
+// eventosDatabase
 
-const getAllBranchesCtrl = async (req, res) => {
+
+
+
+
+const filterEvents = () => {
+
   async function main(){
-    const getBranches = await prisma.agencia.findMany();
-    res.send(getBranches)
-    
+    const getEvents = await prisma.relatorio_acesso.findFirst({
+      orderBy:{
+        id_evt: 'desc'
+      }
+    })
+
+    return getEvents
   }
-  
+    
   main()
     .then(async () => {
       await prisma.$disconnect()
@@ -19,12 +28,9 @@ const getAllBranchesCtrl = async (req, res) => {
       console.error(e)
       await prisma.$disconnect()
       process.exit(1)
-    })
-
+    })   
+    
+    
 }
 
-
-
-module.exports = getAllBranchesCtrl
-
-
+module.exports = filterEvents
