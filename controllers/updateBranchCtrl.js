@@ -10,7 +10,8 @@ const getOneBranchCtrl = async (req, res) => {
     const getBranch = await prisma.agencia.update({
       where:{ numero_ag: getOneBranch },
       data: { 
-        nome_banco: updateBranch.nome_banco,           
+        nome_banco: updateBranch.nome_banco,
+        numero_ag: updateBranch.numero_ag,          
         nome_ag: updateBranch.nome_ag,
         end_ip: updateBranch.end_ip,
         porta: updateBranch.porta,
