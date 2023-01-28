@@ -35,6 +35,7 @@ const getOneBranchCtrl = async (req, res) => {
               hora_evt: 'desc'
             },   
             select: {
+              nr_agencia:true,
               id_evt: true,
               data_evt: true,
               hora_evt: true,

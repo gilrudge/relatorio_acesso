@@ -15,11 +15,11 @@ const getDeviceEvents = (req, res) => {
     .then(apiResponse => {
       const dados = apiResponse.data
 
-      const clearData = dados.split('{"r": 1')[0]
-      const clearComma = JSON.parse(clearData.replace(',\n]\n}', ']}'))
+      const clearData = dados.split('{"r":')[0]
+      const clearComma = JSON.parse(clearData.replace(',\n]\n}', ']}'));
       const { nr_agencia, eventos } = clearComma
 
-
+            
       const addEvent = async () => {
 
         newEventsMap = await eventos.map(evento => (
@@ -44,7 +44,7 @@ const getDeviceEvents = (req, res) => {
 
           newEventsMap = newEventsMap.filter(evento => evento.cod_evt != 6)
 
-          console.log(newEventsMap)
+          console.log(newEventsMap);
 
           if (lastDbEvent.cod_evt == 3 && newEventsMap[newEventsMap.length - 1].cod_evt == 3) {
             newEventsMap.pop()
@@ -63,7 +63,7 @@ const getDeviceEvents = (req, res) => {
               await prisma.relatorio_acesso.delete({
                 where: {
                   id_evt: lastDbEvent.id_evt
-                }
+        }
               })
               await prisma.relatorio_acesso.createMany({
                 data: newEventsMap
@@ -116,6 +116,11 @@ const getDeviceEvents = (req, res) => {
 
     .catch((e) => console.log(`Erro ao incluir eventos! ${e.message}`))
 
+    // return clearResponse
+    
 };
 
+
 module.exports = getDeviceEvents
+
+
