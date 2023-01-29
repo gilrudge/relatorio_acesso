@@ -17,14 +17,19 @@ const getDeviceEvents = (req, res) => {
 
       const clearData = dados.split('{"r":')[0]
       const clearComma = JSON.parse(clearData.replace(',\n]\n}', ']}'));
-      const { nr_agencia, eventos } = clearComma
+      const { banco, agencia, nr_agencia, ip_logado, porta, mac_adress, eventos } = clearComma
 
-            
+      console.log(clearData)
       const addEvent = async () => {
 
         newEventsMap = await eventos.map(evento => (
           {
-            nr_agencia: nr_agencia,
+            banco,  
+            agencia,
+            nr_agencia,
+            ip_logado,
+            porta,
+            mac_adress,
             data_evt: evento.data_ev,
             hora_evt: evento.hora_ev,
             cont_evt: evento.id_cont,
@@ -114,9 +119,7 @@ const getDeviceEvents = (req, res) => {
 
     })
 
-    .catch((e) => console.log(`Erro ao incluir eventos! ${e.message}`))
-
-    // return clearResponse
+    .catch((e) => {console.log(`Erro ao incluir eventos! ${e.message}`)})
     
 };
 

@@ -39,6 +39,11 @@ model Relatorio_acesso {
   nr_seq        String                @db.VarChar(20) 
   crc           String                @db.VarChar(50) 
   cod_evt       Int                   @db.SmallInt
+  banco         String                @db.VarChar(50)
+  agencia       String                @db.VarChar(100)
+  ip_logado     String                @db.VarChar(15)
+  porta         String                @db.VarChar(10)
+  mac_adress    String                @db.VarChar(20)
   descricao     Descricao_evento      @relation(fields:[cod_evt], references: [cod_evento])  
 }
 
