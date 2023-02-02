@@ -24,7 +24,7 @@ const getDeviceEvents = (req, res) => {
 
         newEventsMap = await eventos.map(evento => (
           {
-            banco,  
+            banco,
             agencia,
             nr_agencia,
             ip_logado,
@@ -64,11 +64,11 @@ const getDeviceEvents = (req, res) => {
             })
           }
           else if (lastDbEvent.cod_evt == 2 && newEventsMap.length > 0) {
-            if (newEventsMap[newEventsMap.length-1].cod_evt == 5 || newEventsMap[newEventsMap.length-1].cod_evt == 3) {
+            if (newEventsMap[newEventsMap.length - 1].cod_evt == 5 || newEventsMap[newEventsMap.length - 1].cod_evt == 3) {
               await prisma.relatorio_acesso.delete({
                 where: {
                   id_evt: lastDbEvent.id_evt
-        }
+                }
               })
               await prisma.relatorio_acesso.createMany({
                 data: newEventsMap
@@ -119,8 +119,8 @@ const getDeviceEvents = (req, res) => {
 
     })
 
-    .catch((e) => {console.log(`Erro ao incluir eventos! ${e.message}`)})
-    
+    .catch((e) => { console.log(`Erro ao incluir eventos! ${e.message}`) })
+
 };
 
 
