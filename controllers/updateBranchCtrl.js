@@ -1,13 +1,13 @@
 const { PrismaClient } = require('@prisma/client')
-
 const prisma = new PrismaClient();
-
+const getIps = require('../services/getIps')
 
 const getOneBranchCtrl = async (req, res) => {
   const updateBranch = req.body
   const getOneBranch = req.params.id
-  async function main(){
-    const getBranch = await prisma.agencia.update({
+
+  try {
+    const getBranch = await prisma.agencia.update ({
       where:{ numero_ag: getOneBranch },
       data: { 
         nome_banco: updateBranch.nome_banco,
@@ -22,22 +22,14 @@ const getOneBranchCtrl = async (req, res) => {
         mac_adress: updateBranch.mac_adress      
       }
     })
-    res.send({message: "Atualização realizada com sucesso"})
-        
+    getIps()
+    res.json(getBranch)
+
+  } catch(error) {
+    console.log(error)
   }
-  
-  main()
-    .then(async () => {
-      await prisma.$disconnect()
-    })
-    .catch(async (e) => {
-      console.error(e)
-      await prisma.$disconnect()
-      process.exit(1)
-    })
-
 }
-
+  
 module.exports = getOneBranchCtrl
 
 

@@ -17,7 +17,7 @@ model Agencia {
   nome_banco    String   @db.VarChar(20)
   numero_ag     String   @db.VarChar(15) @unique
   nome_ag       String   @db.VarChar(100)
-  end_ip        String   @db.VarChar(15)
+  end_ip        String   @db.VarChar(15) @unique
   porta         String   @db.VarChar(10)
   masc_rede     String   @db.VarChar(15) 
   end_dns       String   @db.VarChar(15) 

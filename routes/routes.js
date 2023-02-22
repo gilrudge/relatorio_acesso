@@ -5,16 +5,17 @@ const getOneBranchCtrl = require('../controllers/getOneBranchCtrl');
 const addOneBranchCtrl = require('../controllers/addOneBranchCtrl');
 const updateBranchCtrl = require('../controllers/updateBranchCtrl');
 const deleteOneBranchCtrl = require('../controllers/deleteOneBranchCtrl');
-const getOneBranchQuickCtrl = require('../controllers/getOneBranchQuickCtrl');
+
+// const getDeviceStatus = require('../controllers/getDeviceStatus');
 
 
 router.get('/', getAllBranchesCtrl);
 router.get('/:id', getOneBranchCtrl);
-router.get('/:id/update/', getOneBranchQuickCtrl);
 router.post('/', addOneBranchCtrl);
 router.put('/:id', updateBranchCtrl);
 router.delete('/:id', deleteOneBranchCtrl);
 
+// router.get('/status/:id', getDeviceStatus);
 
 
 module.exports = router

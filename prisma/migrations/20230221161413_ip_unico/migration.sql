@@ -18,7 +18,8 @@ CREATE TABLE [dbo].[Agencia] (
     [ipfixo_dhcp] VARCHAR(10) NOT NULL,
     [mac_adress] VARCHAR(20) NOT NULL,
     CONSTRAINT [Agencia_pkey] PRIMARY KEY CLUSTERED ([id_ag]),
-    CONSTRAINT [Agencia_numero_ag_key] UNIQUE NONCLUSTERED ([numero_ag])
+    CONSTRAINT [Agencia_numero_ag_key] UNIQUE NONCLUSTERED ([numero_ag]),
+    CONSTRAINT [Agencia_end_ip_key] UNIQUE NONCLUSTERED ([end_ip])
 );
 
 -- CreateTable
