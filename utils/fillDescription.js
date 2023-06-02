@@ -3,6 +3,9 @@ const prisma = new PrismaClient();
 
 
 const fillDescription = async () => {
+
+  // await prisma.Descricao_evento.deleteMany({})
+
   const descCommands =
     [
       {cod_evento:1, desc_evento:'Saída'},
@@ -13,7 +16,10 @@ const fillDescription = async () => {
       {cod_evento:6, desc_evento:'Eventos Apagados'},
       {cod_evento:7, desc_evento:'Módulo Instalado'},
       {cod_evento:8, desc_evento:'Padrões de Fábrica'},
+      {cod_evento:9, desc_evento:'Retorno de AC'},
+      {cod_evento:10, desc_evento:'Falha de AC'},
     ];
+
 
   const databaseCommands = descCommands.map(item => ({
     cod_evento:item.cod_evento,
@@ -23,8 +29,10 @@ const fillDescription = async () => {
   await prisma.Descricao_evento.createMany({
     data: databaseCommands
   })
+
+  console.log('Descrições preenchidas')
 }
 
 fillDescription()
 
-module.exports = fillDescription
+// module.exports = fillDescription

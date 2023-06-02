@@ -20,6 +20,9 @@ const clearEvents = async (ip) => {
 
 const addEvent = async (banco, agencia, nr_agencia, ip_logado, porta, mac_adress, eventos, ip) => {
 
+  try {
+    
+  
   newEventsMap = eventos.map(evento => (
     {
       banco,
@@ -45,6 +48,8 @@ const addEvent = async (banco, agencia, nr_agencia, ip_logado, porta, mac_adress
       createdAt: 'desc'
     }
   });
+
+  
 
   newEventsMap = newEventsMap.filter(evento => evento.cod_evt != 6)
 
@@ -92,6 +97,11 @@ const addEvent = async (banco, agencia, nr_agencia, ip_logado, porta, mac_adress
 
   clearEvents(ip)
   previousEventsMap = newEventsMap
+
+} catch (error) {
+    console.log(`Favor cadastrar uma agência ${error}`)
+}
+
 
 };
 

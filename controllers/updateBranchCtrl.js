@@ -22,8 +22,8 @@ const getOneBranchCtrl = async (req, res) => {
         mac_adress: updateBranch.mac_adress      
       }
     })
-    getIps()
     res.json(getBranch)
+    getIps()
 
   } catch(error) {
     console.log(error)

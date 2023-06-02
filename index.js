@@ -20,15 +20,15 @@ setInterval(() => {
     method: 'get',
     url: 'http://localhost:4000/eventos'
   })
-  
-}, 10000);
 
-// setInterval(() => {
-//   axios({
-//     method: 'get',
-//     url: 'http://localhost:4000/status'
-//   })
-// }, 5000);
+}, 15000);
+
+setInterval(() => {
+  axios({
+    method: 'get',
+    url: 'http://localhost:4000/status'
+  })
+}, 15000);
 
 const routes = require('./routes/routes');
 app.use('/', routes);

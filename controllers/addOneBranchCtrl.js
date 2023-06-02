@@ -20,8 +20,8 @@ const addOneBranchCtrl = async (req, res) => {
         mac_adress: addItem.mac_adress 
       }
     });
-    getIps()
     res.json(addBranch)
+    getIps()
 
   } catch(error) {
     console.log(error)

@@ -13,9 +13,6 @@ const getDeviceStatus = async(req, res) => {
   .then(response => res.send(response.data))
   .catch(e => res.send(false))
 
-
-
 }
-
 
 module.exports = getDeviceStatus
