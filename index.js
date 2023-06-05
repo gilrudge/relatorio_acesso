@@ -18,7 +18,7 @@ app.get('/status/:id', getDeviceStatus);
 setInterval(() => {
   axios({
     method: 'get',
-    url: 'http://localhost:4000/eventos'
+    url: `http://${process.env.IP}/eventos`
   })
 
 }, 15000);
@@ -26,7 +26,7 @@ setInterval(() => {
 setInterval(() => {
   axios({
     method: 'get',
-    url: 'http://localhost:4000/status'
+    url: `http://${process.env.IP}/status`
   })
 }, 15000);
 
